@@ -1,6 +1,5 @@
 #include "heap.h"
 using namespace std;
-#define int long long
 
 int32_t main()
 {
@@ -9,16 +8,28 @@ int32_t main()
 	maxHeap<int> h;
 	h.push(12);
 	h.push(21);
+
+	// h.clear();
 	h.display();
 
-	cout << endl;
+	cout << '\n';
 
-	h.pop();
-	h.display();
+	vector<int> t = h.sort();
+	for(auto x: t) cout << x << ' ';
+
+	cout << '\n';
 	
-	cout << endl;
-	
-	h.pop();
-	h.display();
+	vector<int> m = {3, 1, 2};
+	h.makeHeap(m);
+	for(auto x: m) cout << x << ' ';
+
+	cout << '\n';
+
+	int a[3] = {2, 12, 1};
+	h.makeHeap(a, 3);
+	for(int i = 0 ; i < 3 ; i++) {
+		cout << a[i] << ' ';
+	}
+
 	return 0;
 }
