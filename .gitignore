@@ -1,4 +1,2 @@
-test1.exe
-test.exe
-heap.exe
+*.exe
 input.txt
