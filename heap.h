@@ -22,6 +22,7 @@ class maxHeap {
 
 		int size();
 		bool empty();
+		
 		void push(T element);
 		void pop();
 		void display();
@@ -29,10 +30,7 @@ class maxHeap {
 
 		T top();
 
-		vector<T> sort();
-
-		void makeHeap(vector<T> &v);
-		void makeHeap(T *a, int n);
+		void sort(vector<T> &v);
 };
 
 template<typename T> inline int maxHeap<T>::parent(int index) {
@@ -102,53 +100,20 @@ template<typename T> inline void maxHeap<T>::display() {
 }
 
 
-template<typename T> inline vector<T> maxHeap<T>::sort() {
-	vector<T> t;
+template<typename T> inline void maxHeap<T>::sort(vector<T> &v) {
+	vector<T> prevState = heap;
+
 	while(size()) {
-		t.push_back(top());
+		v.push_back(top());
 		pop();
 	}
-	heap = t;
-	return t;
-}
-
-
-
-template<typename T> inline void maxHeap<T>::makeHeap(vector<T> &v) {
-	if(!v.size()) {
-		return;
-	}
-	maxHeap<T> auxi;
-	for(auto x: v) {
-		auxi.push(x);
-	}
-
-	v.clear();
 	
-	vector<int> ans = auxi.sort();
+	heap = prevState;
 
-	for(auto &x: ans) {
-		v.push_back(x);
-	}
+	reverse(v.begin(), v.end());
 	return;
 }
 
-
-template<typename T> inline void maxHeap<T>::makeHeap(T *a, int n) {
-	if(!n) {
-		return;
-	}
-	maxHeap<T> auxi;
-	for(int i = 0 ; i < n ; i++) {
-		auxi.push(a[i]);
-	}
-	
-	vector<int> ans = auxi.sort();
-	for(int i = 0 ; i < n ; i++) {
-		a[i] = ans[i];
-	}
-	return;
-}
 
 
 
